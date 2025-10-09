@@ -1064,6 +1064,10 @@ https://templatemo.com/tm-596-electric-xtra
         @media (max-width: 768px) {
            
 
+            .about-visual {
+                align-items: flex-start;
+            }
+
             .nav-links {
                 position: fixed;
                 top: 70px;
