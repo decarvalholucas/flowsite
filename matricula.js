@@ -4,6 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const formStatus = document.getElementById("formStatus");
     const submitButton = document.getElementById("submitButton");
 
+    // --- INÍCIO DA MODIFICAÇÃO ---
+    // Seleciona o modal que foi adicionado ao HTML
+    const paymentModal = document.getElementById("paymentModal");
+    // --- FIM DA MODIFICAÇÃO ---
+
     // --- INÍCIO DA MÁSCARA DE DATA (dd/mm/aaaa) ---
     const dataNascimentoInput = document.getElementById("data_nascimento");
 
@@ -28,7 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault(); 
 
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxxAzPIna-OQkp1cvqLDZ2YY6eK23iYl9emD45sNCv24RRgEsHT8bO-hEc2JMt4eMiX/exec"; 
-        const ASAAS_PAYMENT_LINK = "https://www.asaas.com/c/nhvlixhdros15crz";
+        
+        // Link de pagamento antigo (não é mais usado aqui)
+        // const ASAAS_PAYMENT_LINK = "https://www.asaas.com/c/nhvlixhdros15crz";
 
         formStatus.innerHTML = "Enviando dados, aguarde...";
         formStatus.className = "";
@@ -62,14 +69,37 @@ document.addEventListener("DOMContentLoaded", () => {
             body: new URLSearchParams(dataObject)
         })
         .then(() => {
-            formStatus.innerHTML = "Matrícula enviada com sucesso! Você será redirecionado para o pagamento em 3 segundos...";
+            // --- INÍCIO DA MODIFICAÇÃO ---
+            // Sucesso! Em vez de redirecionar, mostramos o modal.
+            
+            // 1. Atualiza o status (opcional, pois o modal aparecerá)
+            formStatus.innerHTML = "Matrícula enviada com sucesso! Escolha seu plano.";
             formStatus.classList.add("success");
             
-            form.reset(); // Limpa o formulário SÓ NO SUCESSO
+            // 2. Limpa o formulário
+            form.reset(); 
 
+            // 3. Mostra o modal de pagamento
+            if (paymentModal) {
+                // Usamos 'flex' pois foi definido no CSS
+                paymentModal.style.display = "flex"; 
+                // Adiciona a classe 'visible' após um pequeno delay para a transição de opacidade funcionar
+                setTimeout(() => { 
+                    paymentModal.classList.add("visible");
+                }, 10);
+            }
+            
+            // 4. O botão de submit pode ser reativado ou escondido
+            // submitButton.disabled = false;
+            // submitButton.innerHTML = "Enviar Matrícula e Pagar";
+            
+            // 5. Remove o redirecionamento antigo
+            /*
             setTimeout(() => {
                 window.location.href = ASAAS_PAYMENT_LINK;
             }, 3000);
+            */
+            // --- FIM DA MODIFICAÇÃO ---
         })
         .catch(error => {
             console.error("Erro de rede ao enviar formulário:", error);
