@@ -1,0 +1,172 @@
+/*
+ * CSS da Página de Matrícula - Flow Escola de Jiu-Jitsu
+ * v1.2 - Corrige o checkbox "Li e aceito"
+ */
+
+/* 1. Fundo branco e layout do formulário */
+.matricula-form {
+    background: #ffffff;
+    border: 1px solid rgba(255, 26, 0, 0.5);
+    border-radius: 10px;
+    padding: 40px;
+    backdrop-filter: blur(10px);
+    color: #333; 
+}
+
+/* 2. Inputs de Texto (para fundo branco) */
+.matricula-form .form-group input[type="text"],
+.matricula-form .form-group input[type="date"],
+.matricula-form .form-group input[type="number"],
+.matricula-form .form-group input[type="tel"],
+.matricula-form .form-group input[type="email"],
+.matricula-form .form-group textarea {
+    background: rgba(0, 0, 0, 0.05); 
+    border: 1px solid rgba(0, 0, 0, 0.2); 
+    color: #333; 
+    font-size: 1rem; 
+}
+
+.matricula-form .form-group input[type="text"]:focus,
+.matricula-form .form-group input[type="date"]:focus,
+.matricula-form .form-group input[type="number"]:focus,
+.matricula-form .form-group input[type="tel"]:focus,
+.matricula-form .form-group input[type="email"]:focus,
+.matricula-form .form-group textarea:focus {
+    border-color: #FF1A00;
+    box-shadow: 0 0 10px rgba(255, 94, 0, 0.3);
+    background: #fff;
+}
+
+/* 3. CORREÇÃO: Todos os labels escuros */
+.matricula-form .form-group label {
+    color: #333 !important; 
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: initial;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.matricula-form .radio-group > label.group-label,
+.matricula-form .checkbox-group > label.group-label {
+     color: #333 !important; 
+}
+
+/* 4. Estilização Customizada de Radio/Checkbox */
+
+/*
+ * --- CORREÇÃO ESTÁ AQUI ---
+ * Removido o ".form-group" do seletor abaixo para
+ * que a regra se aplique a TODOS os radios/checkboxes
+ * dentro de .matricula-form, corrigindo o bug do
+ * checkbox flutuante.
+ */
+.matricula-form input[type="radio"],
+.matricula-form input[type="checkbox"] {
+    width: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    opacity: 0; /* Esconde o input real */
+    position: fixed;
+}
+/* --- FIM DA CORREÇÃO --- */
+
+
+/* Estiliza o label clicável */
+.matricula-form .radio-group label,
+.matricula-form .checkbox-group label,
+.matricula-form .checkbox-group div > label {
+    display: inline-flex; 
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #333 !important; 
+    font-weight: 500;
+    margin-right: 15px; 
+    min-height: 24px; 
+}
+
+/* Tira o marcador customizado do label-título */
+.matricula-form .radio-group > label.group-label::before,
+.matricula-form .checkbox-group > label.group-label::before {
+    display: none;
+}
+
+/* Cria o marcador customizado (base) */
+.matricula-form input[type="radio"] + label::before,
+.matricula-form input[type="checkbox"] + label::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border: 2px solid #FF1A00; 
+    background: #fff;
+    margin-right: 10px;
+    transition: all 0.2s ease;
+    flex-shrink: 0; 
+}
+
+/* Marcador de RÁDIO (círculo) */
+.matricula-form input[type="radio"] + label::before {
+    border-radius: 50%;
+}
+
+/* Marcador de CHECKBOX (quadrado) */
+.matricula-form input[type="checkbox"] + label::before {
+    border-radius: 4px;
+}
+
+/* Marcador CHECADO (RÁDIO) */
+.matricula-form input[type="radio"]:checked + label::before {
+    background: #fff; 
+    border-width: 6px; /* "Bolinha" interna */
+    border-color: #FF1A00;
+}
+
+/* Marcador CHECADO (CHECKBOX) */
+.matricula-form input[type="checkbox"]:checked + label::before {
+    background: #FF1A00;
+    border-color: #FF1A00;
+    color: white;
+    content: '\2713'; /* "Check" */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* 5. Outros Estilos e Responsivo */
+
+.matricula-form .termo-responsabilidade p { color: #555; opacity: 1; }
+.matricula-form .aceite-uso-imagem { background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.1); padding: 20px; border-radius: 5px; }
+.matricula-form .aceite-uso-imagem a { color: #FF1A00; text-decoration: underline; }
+.matricula-form .aceite-uso-imagem .checkbox-group label { font-size: 1.1rem; font-weight: 700; }
+.matricula-form .checkbox-group div { margin-bottom: 10px; display: block; }
+.matricula-form .radio-group { display: flex; flex-wrap: wrap; align-items: center; }
+.matricula-form .radio-group > label.group-label { width: 100%; }
+.matricula-form .radio-group input[type="radio"] + label { margin-right: 20px; }
+
+fieldset { border: 1px solid rgba(255, 94, 0, 0.3); border-radius: 5px; padding: 20px; margin-bottom: 25px; }
+legend { font-family: 'Orbitron', monospace; font-size: 1.5rem; color: #FF1A00; padding: 0 10px; margin-left: 10px; }
+.form-row { display: flex; gap: 20px; flex-wrap: wrap; }
+.form-group.half { flex: 1; min-width: 200px; }
+
+#formStatus { text-align: center; font-size: 1.2rem; font-weight: 700; margin-top: 20px; padding: 15px; border-radius: 5px; display: none; }
+#formStatus.success { background-color: rgba(0, 200, 50, 0.1); border: 1px solid rgba(0, 200, 50, 0.5); color: #006400; }
+#formStatus.error { background-color: rgba(255, 0, 0, 0.1); border: 1px solid rgba(255, 0, 0, 0.5); color: #FF1A00; }
+
+@media (max-width: 768px) {
+    section.contact { padding-left: 15px; padding-right: 15px; }
+    .matricula-form { padding: 20px; }
+    .form-row { flex-direction: column; gap: 0; }
+    .form-group.half { min-width: 100%; width: 100%; }
+    fieldset { padding: 15px; }
+    legend { font-size: 1.3rem; }
+    .matricula-form .aceite-uso-imagem .checkbox-group label { font-size: 1rem; }
+    .matricula-form .radio-group input[type="radio"] + label,
+    .matricula-form .checkbox-group div > label { margin-right: 10px; font-size: 0.95rem; }
+    .matricula-form .radio-group input[type="radio"] + label[for="lib_naosei"] { width: 100%; margin-top: 10px; }
+}
