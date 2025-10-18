@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // -----------------------------------------------------------------
         // 1. COLE A *NOVA* URL DO PASSO 1 AQUI:
         // -----------------------------------------------------------------
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwAK2e4Wv7MYpGvvq1FmjUwq4oAt7vnk47nvpIlqiio6hidrtRyfwfptu5G_AT-wQTf/exec"; 
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxxAzPIna-OQkp1cvqLDZ2YY6eK23iYl9emD45sNCv24RRgEsHT8bO-hEc2JMt4eMiX/exec"; 
         
         // 2. COLOQUE SEU LINK DO ASAAS AQUI:
         const ASAAS_PAYMENT_LINK = "https://flowescoladejiujitsu.com.br/";
