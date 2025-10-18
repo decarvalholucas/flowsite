@@ -142,7 +142,7 @@
 
 .matricula-form .termo-responsabilidade p { color: #555; opacity: 1; }
 .matricula-form .aceite-uso-imagem { background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.1); padding: 20px; border-radius: 5px; }
-.matricula-form .aceite-uso-imagem a { color: #FF1A00; text-decoration: underline; }
+.matricula-form .aceite-uso-imagem a { color: #FF1A00; text-decoration: underline; margin-left: 5px; }
 .matricula-form .aceite-uso-imagem .checkbox-group label { font-size: 1.1rem; font-weight: 700; }
 .matricula-form .checkbox-group div { margin-bottom: 10px; display: block; }
 .matricula-form .radio-group { display: flex; flex-wrap: wrap; align-items: center; }

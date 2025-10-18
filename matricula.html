@@ -54,16 +54,11 @@
                         <label for="nome">Nome completo</label>
                         <input type="text" id="nome" name="Nome completo" required>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group half">
-                            <label for="data_nascimento">Data de nascimento</label>
-                            <input type="date" id="data_nascimento" name="Data de nascimento" required>
-                        </div>
-                        <div class="form-group half">
-                            <label for="idade">Idade</label>
-                            <input type="number" id="idade" name="Idade" required>
-                        </div>
-                    </div>
+                    
+                    <div class="form-group">
+                        <label for="data_nascimento">Data de nascimento</label>
+                        <input type="text" id="data_nascimento" name="Data de nascimento" placeholder="dd/mm/aaaa" required maxlength="10"> </div>
+                    
                     <div class="form-group radio-group">
                         <label class="group-label">Sexo:</label>
                         <input type="radio" name="Sexo" value="M" id="sexo_m" required>
@@ -72,16 +67,12 @@
                         <input type="radio" name="Sexo" value="F" id="sexo_f">
                         <label for="sexo_f">F</label>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group half">
-                            <label for="cpf">CPF</label>
-                            <input type="text" id="cpf" name="CPF" required>
-                        </div>
-                        <div class="form-group half">
-                            <label for="rg">RG</label>
-                            <input type="text" id="rg" name="RG" required>
-                        </div>
+
+                    <div class="form-group">
+                        <label for="cpf">CPF</label>
+                        <input type="text" id="cpf" name="CPF" required>
                     </div>
+                    
                     <div class="form-group">
                         <label for="endereco">Endereço</label>
                         <input type="text" id="endereco" name="Endereço" required>
@@ -94,8 +85,9 @@
                         <label for="email">E-mail</label>
                         <input type="email" id="email" name="E-mail" required>
                     </div>
+                    
                     <div class="form-group">
-                        <label for="profissao">Profissão</label>
+                        <label for="profissao">Profissão (opcional)</label> 
                         <input type="text" id="profissao" name="Profissão">
                     </div>
                     <div class="form-group">
@@ -257,7 +249,7 @@
                         <input type="checkbox" id="uso_imagem" name="Aceite Uso Imagem" value="Sim" required>
                         <label for="uso_imagem">
                             Li e aceito o <a href="termo-uso-imagem.html" target="_blank">Termo de Uso de Imagem</a>.
-                        </label>
+                        </labe>
                     </div>
                 </div>
 

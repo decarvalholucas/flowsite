@@ -4,7 +4,37 @@ document.addEventListener("DOMContentLoaded", () => {
     const formStatus = document.getElementById("formStatus");
     const submitButton = document.getElementById("submitButton");
 
-    form.addEventListener("submit", (e) => { // Removi 'async'
+    // --- INÍCIO DA MÁSCARA DE DATA (dd/mm/aaaa) ---
+    const dataNascimentoInput = document.getElementById("data_nascimento");
+
+    dataNascimentoInput.addEventListener("input", (e) => {
+        let value = e.target.value;
+        
+        // 1. Remove tudo que não for dígito
+        value = value.replace(/\D/g, "");
+
+        // 2. Adiciona a primeira barra (dd/)
+        if (value.length > 2) {
+            value = value.substring(0, 2) + "/" + value.substring(2);
+        }
+
+        // 3. Adiciona a segunda barra (dd/mm/)
+        if (value.length > 5) {
+            value = value.substring(0, 5) + "/" + value.substring(5);
+        }
+
+        // 4. Limita o tamanho total (dd/mm/aaaa)
+        if (value.length > 10) {
+            value = value.substring(0, 10);
+        }
+
+        // 5. Atualiza o valor no campo
+        e.target.value = value;
+    });
+    // --- FIM DA MÁSCARA DE DATA ---
+
+
+    form.addEventListener("submit", (e) => { 
         e.preventDefault(); // Impede o envio padrão do formulário
 
         // -----------------------------------------------------------------
@@ -13,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxxAzPIna-OQkp1cvqLDZ2YY6eK23iYl9emD45sNCv24RRgEsHT8bO-hEc2JMt4eMiX/exec"; 
         
         // 2. COLOQUE SEU LINK DO ASAAS AQUI:
-        const ASAAS_PAYMENT_LINK = "https://flowescoladejiujitsu.com.br/";
+        const ASAAS_PAYMENT_LINK = "https://www.asaas.com/c/nhvlixhdros15crz";
         // -----------------------------------------------------------------
 
 
