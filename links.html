@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links - Flow Escola de Jiu-Jitsu</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    
+    <link href="styles.css" rel="stylesheet">
+    
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .links-container {
+            width: 100%;
+            max-width: 600px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo-links {
+            width: 100%;
+            max-width: 300px; /* Ajuste o tamanho do logo */
+            margin-bottom: 40px;
+        }
+
+        /* Reutiliza a classe 'cta-button' do styles.css mas força 100% de largura */
+        .link-button {
+            width: 100%;
+            margin-bottom: 20px;
+            text-align: center;
+            display: flex; /* Para alinhar ícone e texto */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .link-button span {
+            font-size: 1.2rem; /* Tamanho do ícone */
+            margin-right: 15px; /* Espaço entre ícone e texto */
+            line-height: 1;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="grid-bg"></div>
+    <div class="gradient-overlay"></div>
+    <div class="scanlines"></div>
+    <div class="shapes-container">
+        <div class="shape shape-circle"></div>
+        <div class="shape shape-triangle"></div>
+        <div class="shape shape-square"></div>
+    </div>
+    <div id="particles"></div>
+    <div class="links-container">
+        <img src="images/logo-flow.png" alt="Logo Flow Jiu-Jitsu" class="logo-links">
+
+        <a href="https://wa.me/5522999790953" target="_blank" class="cta-button cta-primary link-button">
+            <span>💬</span>
+            MATRICULAR-SE
+        </a>
+
+        <a href="index.html#planos" class="cta-button cta-secondary link-button">
+            <span>💰</span>
+            CONHEÇA OS PLANOS
+        </a>
+
+        <a href="https://instagram.com/flowescoladejiujitsu" target="_blank" class="cta-button cta-secondary link-button">
+            <span>🥋</span>
+            INSTAGRAM DA FLOW
+        </a>
+
+        <a href="https://instagram.com/brigadiercafeoficial" target="_blank" class="cta-button cta-secondary link-button">
+            <span>☕</span>
+            INSTAGRAM DO BRIGADIER
+        </a>
+
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>
