@@ -1159,3 +1159,177 @@ https://templatemo.com/tm-596-electric-xtra
                 transform: scale(0.6);
             }
         }
+
+        /* --- Pricing Section Styles (com Carrossel) --- */
+.pricing {
+    padding: 100px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+}
+
+.pricing-container {
+    /* No desktop, continua side-by-side */
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap; /* Desktop permite quebra de linha se tiver muitos planos */
+    transition: transform 0.5s ease-in-out;
+}
+
+.pricing-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 26, 0, 0.5);
+    border-radius: 10px;
+    padding: 40px;
+    backdrop-filter: blur(10px);
+    width: 100%;
+    max-width: 400px;
+    text-align: left;
+    transition: all 0.3s ease;
+    flex-shrink: 0; /* Importante para o carrossel */
+}
+
+.pricing-card:hover {
+    box-shadow: 0 10px 40px rgba(255, 26, 0, 0.5);
+}
+
+/* Featured Plan */
+.pricing-card.featured {
+    border: 2px solid #FF1A00;
+    box-shadow: 0 0 30px rgba(255, 26, 0, 0.5);
+    /* transform: scale(1.05); <-- CORREÇÃO: Removido o scale para corrigir o layout */
+}
+
+.pricing-card .card-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, #ffffff, #FF1A00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.pricing-card .price-tag {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #ffffff;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.pricing-card .price-tag span {
+    font-size: 3.5rem;
+    color: #FF1A00;
+    margin: 0 5px;
+}
+
+.pricing-card .price-tag .period {
+    font-size: 1.2rem;
+    color: #ffffff;
+    opacity: 0.7;
+    font-weight: 400;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.pricing-card .card-description {
+    font-size: 1.1rem;
+    opacity: 0.8;
+    margin-bottom: 25px;
+    text-align: center;
+    min-height: 40px;
+}
+
+.pricing-card .card-features {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.pricing-card .card-features li {
+    padding: 8px 0;
+    opacity: 0.8;
+    font-size: 1.1rem;
+}
+
+.pricing-card .cta-button {
+    width: 100%;
+    text-align: center;
+}
+
+/* --- Novos Estilos do Carrossel --- */
+
+.carousel-wrapper {
+    width: 100%;
+    overflow: hidden; /* Esconde os slides laterais */
+    position: relative;
+    /* Remove a rolagem nativa */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+/* Esconde a rolagem nativa no Chrome, Safari e Opera */
+.carousel-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+
+.carousel-dots {
+    display: none; /* Escondido no desktop */
+    text-align: center;
+    padding-top: 20px;
+}
+
+.carousel-dot {
+    height: 12px;
+    width: 12px;
+    margin: 0 5px;
+    background-color: rgba(255, 26, 0, 0.3);
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    border: 2px solid rgba(255, 26, 0, 0.5);
+}
+
+.carousel-dot.active {
+    background-color: #FF1A00;
+    box-shadow: 0 0 10px rgba(255, 26, 0, 0.7);
+}
+
+
+/* --- Media Query ATUALIZADA para Carrossel --- */
+@media (max-width: 768px) {
+    .pricing {
+        padding: 80px 0; /* Ajusta padding no mobile */
+    }
+    
+    .carousel-wrapper {
+        width: 90%; /* O card visível terá 90% da tela */
+        margin: 0 auto; /* Centraliza */
+    }
+    
+    .carousel-dots {
+        display: block; /* Mostra os dots no mobile */
+    }
+    
+    .pricing-container {
+        /* Configura o container como um "trilho" de slides */
+        display: flex;
+        flex-wrap: nowrap; /* Impede a quebra de linha */
+        gap: 0; /* O JS cuidará do espaçamento */
+        justify-content: flex-start; /* Alinha o início */
+    }
+
+    .pricing-card {
+        width: 100%; /* Cada card ocupa 100% do wrapper */
+        max-width: 100%;
+    }
+
+    .pricing-card.featured {
+        transform: scale(1); /* Remove o zoom no mobile */
+        border-width: 1px; /* Opcional: remove o destaque da borda */
+    }
+}

@@ -223,3 +223,130 @@ setInterval(() => {
         }
     });
 }, 3000);
+
+
+// --- INÍCIO DO CARROSSEL DE PLANOS (MOBILE) ---
+document.addEventListener('DOMContentLoaded', () => {
+    
+    const wrapper = document.querySelector('.carousel-wrapper');
+    const track = document.querySelector('.pricing-container');
+    
+    // Só continua se os elementos do carrossel existirem
+    if (!wrapper || !track) {
+        return;
+    }
+
+    const slides = Array.from(track.children);
+    const dotsContainer = document.querySelector('.carousel-dots');
+    
+    if (slides.length === 0 || !dotsContainer) {
+        return;
+    }
+
+    let slideWidth = 0;
+    let currentIndex = 0;
+
+    // --- Funções do Carrossel ---
+
+    // 1. Cria os 'dots' de navegação
+    function setupDots() {
+        dotsContainer.innerHTML = ''; // Limpa dots antigos
+        slides.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            if (index === 0) dot.classList.add('active'); // Ativa o primeiro
+            
+            dot.addEventListener('click', () => {
+                moveToSlide(index);
+            });
+            dotsContainer.appendChild(dot);
+        });
+    }
+
+    // 2. Atualiza qual dot está ativo
+    function updateDots(index) {
+        const dots = Array.from(dotsContainer.children);
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+    }
+
+    // 3. Move o 'trilho' (track)
+    function moveToSlide(index) {
+        // Recalcula a largura do slide (importante para responsividade)
+        slideWidth = wrapper.clientWidth;
+        
+        // Move o track para o slide correto
+        track.style.transform = `translateX(-${slideWidth * index}px)`;
+        currentIndex = index;
+        updateDots(index);
+    }
+
+    // 4. Configuração inicial
+    function initializeCarousel() {
+        // Só ativa o carrossel em telas móveis
+        if (window.innerWidth <= 768) {
+            if (dotsContainer.children.length === 0) {
+                setupDots();
+            }
+            // Garante que a largura de cada slide seja 100% do wrapper
+            slides.forEach(slide => {
+                slide.style.width = `${wrapper.clientWidth}px`;
+            });
+            moveToSlide(0); // Garante a posição inicial correta
+        } else {
+            // Desktop: reseta o carrossel
+            track.style.transform = 'translateX(0)';
+            slides.forEach(slide => {
+                slide.style.width = ''; // Reseta o width
+            });
+            dotsContainer.innerHTML = ''; // Remove os dots
+        }
+    }
+
+    // --- Lógica de Swipe (Touch) ---
+    let startX = 0;
+    let endX = 0;
+
+    track.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+    }, { passive: true });
+
+    track.addEventListener('touchmove', (e) => {
+        endX = e.touches[0].clientX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', () => {
+        // Só dispara se for mobile
+        if (window.innerWidth > 768) return;
+
+        // Verifica a direção do swipe
+        if (startX - endX > 50) { // Swipe para a esquerda (próximo)
+            if (currentIndex < slides.length - 1) {
+                moveToSlide(currentIndex + 1);
+            }
+        } else if (endX - startX > 50) { // Swipe para a direita (anterior)
+            if (currentIndex > 0) {
+                moveToSlide(currentIndex - 1);
+            }
+        }
+        // Reseta os valores
+        startX = 0;
+        endX = 0;
+    });
+
+    // --- Event Listeners ---
+    
+    // Roda o setup inicial quando a página carrega
+    initializeCarousel();
+
+    // Re-calcula tudo se o usuário redimensionar a tela (ex: virar o celular)
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            initializeCarousel();
+        }, 200);
+    });
+});
+// --- FIM DO CARROSSEL DE PLANOS ---
