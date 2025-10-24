@@ -32,8 +32,9 @@
 
         .logo-links {
             width: 100%;
-            max-width: 300px; /* Ajuste o tamanho do logo */
+            max-width: 300px; /* Tamanho padrão para desktop */
             margin-bottom: 40px;
+            transition: max-width 0.3s ease; /* Adiciona suavidade */
         }
 
         /* Reutiliza a classe 'cta-button' do styles.css mas força 100% de largura */
@@ -51,6 +52,24 @@
             margin-right: 15px; /* Espaço entre ícone e texto */
             line-height: 1;
         }
+
+        /* --- MELHORIA DE RESPONSIVIDADE --- */
+        @media (max-width: 768px) {
+            .logo-links {
+                max-width: 240px; /* Reduz o logo em telas menores */
+                margin-bottom: 30px; /* Reduz a margem */
+            }
+
+            .link-button {
+                padding-top: 14px; /* Ajusta o padding para melhor toque */
+                padding-bottom: 14px;
+            }
+
+            .link-button span {
+                font-size: 1.1rem; /* Diminui um pouco o ícone */
+            }
+        }
+        /* --- FIM DA MELHORIA --- */
 
     </style>
 </head>
