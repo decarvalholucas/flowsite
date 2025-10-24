@@ -130,9 +130,43 @@ tabs.forEach(tab => {
 // Form submission
 document.getElementById('contactForm').addEventListener('submit', function (e) {
     e.preventDefault();
-    // Add your form submission logic here
-    alert('Message sent! We\'ll get back to you soon.');
-    this.reset();
+    
+    // 1. COLE A URL DO SEU GOOGLE SCRIPT AQUI
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwKWyI2fnVbIonqc-WM0Ukk1W-Fx3lJ0jVqJWRMcJK1_I6YYxBolAnBAQxf3FkH-9kd/exec";
+
+    // 2. Feedback de envio
+    const form = this;
+    const submitButton = form.querySelector('.submit-btn');
+    submitButton.disabled = true;
+    submitButton.innerHTML = "Enviando...";
+
+    // 3. Obter os dados do formulário
+    const formData = new FormData(form);
+    const dataObject = {};
+    formData.forEach((value, key) => {
+        dataObject[key] = value;
+    });
+
+    // 4. Enviar os dados para o Google Script
+    fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: 'no-cors', // Necessário para Google Scripts
+        body: new URLSearchParams(dataObject)
+    })
+    .then(() => {
+        // 5. Sucesso
+        alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+        form.reset();
+        submitButton.disabled = false;
+        submitButton.innerHTML = "Enviar mensagem";
+    })
+    .catch(error => {
+        // 6. Erro
+        console.error("Erro ao enviar formulário:", error);
+        alert('Ocorreu um erro ao enviar sua mensagem. Tente novamente.');
+        submitButton.disabled = false;
+        submitButton.innerHTML = "Enviar mensagem";
+    });
 });
 
 // Initialize particles
